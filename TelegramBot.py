@@ -70,6 +70,5 @@ def main():
     token = os.environ['TELEGRAM_TOKEN']
     application = ApplicationBuilder().token(token).build()
 
-
 if __name__ == "__main__":
     main()
