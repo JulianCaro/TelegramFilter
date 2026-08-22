@@ -4,7 +4,7 @@
     "builder": "RAILPACK"
   },
   "deploy": {
-    "startCommand": "python TelegramBot.py",
+    "startCommand": "python -c \"import os; print([k for k in os.environ if 'SESS' in k or 'API' in k])\" && python TelegramBot.py",
     "restartPolicyType": "ALWAYS"
   }
 }
