@@ -1,7 +1,15 @@
 import os
 import re
+import logging
+from telegram import Update
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
 
 CHANNELS = [x.strip() for x in os.environ['CHANNELS'].split(',') if x.strip()]
 KEYWORDS = [x.strip() for x in os.environ['KEYWORDS'].split(',') if x.strip()]
@@ -49,12 +57,18 @@ async def handler(event):
     )
     print(f"[match] {name}: {preview}")
 
+    await message(NOTIFY_TARGET, event.message)
+
+async def message(id,message):
+    ContextTypes.DEFAULT_TYPE.bot.send_message(id, message)
 
 def main():
     print("Starting... (matches will be forwarded to your Saved Messages)")
     client.start()
     print("Running. Press Ctrl+C to stop.")
     client.run_until_disconnected()
+    token = os.environ['TELEGRAM_TOKEN']
+    application = ApplicationBuilder().token(token).build()
 
 
 if __name__ == "__main__":
