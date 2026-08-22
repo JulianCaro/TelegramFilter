@@ -3,43 +3,13 @@ import re
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 
-CHANNELS = [
-    "@rafficaffari",
-    "@megaerrori",
-    "@modascontata",
-    "@vereoffertetech",
-    "@sportaffari",
-    "@prodigeekOfferte",
-    "@ribassitech",
-    "@offertevirali",
-    "@casaofferte",
-    "@TopOfferteNetworkChat",
-    "@ultimaofferta",
-    "@Steffone67"
-]
-
-
-KEYWORDS = [
-    "cuffie",
-    "auricolari",
-    "auricolare",
-    "ssd",
-    "cuffia",
-    "ddr5",
-    "ram",
-    "monster",
-    "redbull",
-    "new balance",
-    "airpods",
-    "caricabatterie",
-    "jbl",
-    "cuffie bluetooth"
-]
+CHANNELS = [x.strip() for x in os.environ['CHANNELS'].split(',') if x.strip()]
+KEYWORDS = [x.strip() for x in os.environ['KEYWORDS'].split(',') if x.strip()]
 
 REGEX_PATTERN = None
 
 # "me" = Saved Messages
-NOTIFY_TARGET = "me"
+NOTIFY_TARGET = -1003733952726
 
 # ----------------------------------------------------------
 
