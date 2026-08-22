@@ -65,8 +65,8 @@ async def handler(event):
     await message(NOTIFY_TARGET,preview)
 
 
-async def message(id, message):
-    application.bot.send_message(id, message)
+async def message(idx, mex):
+    application.bot.send_message(idx, mex)
 
 
 
