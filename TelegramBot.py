@@ -13,7 +13,7 @@ CHANNELS = [
     "@ribassitech",
     "@offertevirali",
     "@casaofferte",
-    "@TopOfferteNetworkChat"
+    "@TopOfferteNetworkChat",
     "@ultimaofferta"
 ]
 
