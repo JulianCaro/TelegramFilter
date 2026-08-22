@@ -54,17 +54,17 @@ async def handler(event):
     name = getattr(chat, "title", None) or getattr(chat, "username", "unknown")
 
     # Forward the original post to  Saved Messages
-    await client.forward_messages(NOTIFY_TARGET, event.message)
+    #await client.forward_messages(NOTIFY_TARGET, event.message)
+#
+    #preview = text[:200].replace("\n", " ")
+    #await client.send_message(
+    #    NOTIFY_TARGET,
+    #    f"🔔 Match in {name}\n{preview}",
+    #)
+    #print(f"[match] {name}: {preview}")
+    #await message(NOTIFY_TARGET,preview)
 
-    preview = text[:200].replace("\n", " ")
-    await client.send_message(
-        NOTIFY_TARGET,
-        f"🔔 Match in {name}\n{preview}",
-    )
-    print(f"[match] {name}: {preview}")
-    await message(NOTIFY_TARGET,preview)
-
-
+#messaggio del bot
 async def message(idx, mex):
     await application.bot.send_message(idx, mex)
 
