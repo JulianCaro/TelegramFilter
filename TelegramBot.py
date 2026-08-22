@@ -1,6 +1,8 @@
 import os
 import re
 import logging
+from email import message
+
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from telethon import TelegramClient, events
@@ -27,6 +29,9 @@ client = TelegramClient(
     os.environ['API_HASH'],
 )
 
+token = os.environ['TELEGRAM_TOKEN']
+application = ApplicationBuilder().token(token).build()
+
 _compiled = re.compile(REGEX_PATTERN, re.IGNORECASE) if REGEX_PATTERN else None
 
 
@@ -41,6 +46,7 @@ def matches(text: str) -> bool:
 
 @client.on(events.NewMessage(chats=CHANNELS))
 async def handler(event):
+
     text = event.raw_text or ""
     if not matches(text):
         return
@@ -56,19 +62,18 @@ async def handler(event):
         f"🔔 Match in {name}\n{preview}",
     )
     print(f"[match] {name}: {preview}")
+    await message(NOTIFY_TARGET,preview)
 
-    await message(NOTIFY_TARGET, event.message)
 
-async def message(id,message):
-    ContextTypes.DEFAULT_TYPE.bot.send_message(id, message)
+async def message(id, message):
+    application.bot.send_message(id, message)
+
+
 
 def main():
     print("Starting... (matches will be forwarded to your Saved Messages)")
     client.start()
     print("Running. Press Ctrl+C to stop.")
     client.run_until_disconnected()
-    token = os.environ['TELEGRAM_TOKEN']
-    application = ApplicationBuilder().token(token).build()
-
 if __name__ == "__main__":
     main()
