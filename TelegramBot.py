@@ -14,7 +14,8 @@ CHANNELS = [
     "@offertevirali",
     "@casaofferte",
     "@TopOfferteNetworkChat",
-    "@ultimaofferta"
+    "@ultimaofferta",
+    "@Steffone67"
 ]
 
 
