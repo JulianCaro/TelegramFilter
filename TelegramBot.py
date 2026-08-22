@@ -66,7 +66,7 @@ async def handler(event):
 
 
 async def message(idx, mex):
-    application.bot.send_message(idx, mex)
+    await application.bot.send_message(idx, mex)
 
 
 
