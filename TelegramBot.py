@@ -67,6 +67,9 @@ async def handler(event):
         return
     chat = await event.get_chat()
     name = getattr(chat, "title", None) or getattr(chat, "username", "unknown")
+    print(
+        f"[chat] {name}: {text}"
+    )
 
     # Forward the original post to  Saved Messages
     await client.forward_messages(NOTIFY_TARGET, event.message)
